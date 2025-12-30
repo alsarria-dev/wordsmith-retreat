@@ -1,117 +1,117 @@
 .addbookspage {
-    width: 100vw;
-    background-image: url("../../assets/images/background.jpg");
-    background-size: cover;
-    height: 90vh;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  background-image: url("../../assets/images/background.jpg");
+  background-size: cover;
+  height: 90vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.errormessage{
-    font-family: 'Inter', sans-serif;
-    color: #ff4343;
-    padding-top: 20px;
+.errormessage {
+  font-family: "Inter", sans-serif;
+  color: #ff4343;
+  padding-top: 20px;
 }
 
-.form-addbook{
-    display: flex;
-    flex-direction: row;
-    width: 80vw;
-    align-items: center;
-    height: 60%;
-    background-color: white;
-    border-radius: 10px;
-    filter: drop-shadow(10px 0px 10px #878787);
-    border: 1px solid #c2c2c2;
+.form-addbook {
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  align-items: center;
+  height: 60%;
+  background-color: white;
+  border-radius: 10px;
+  filter: drop-shadow(10px 0px 10px #878787);
+  border: 1px solid #c2c2c2;
 }
 
 .column-form1 {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
-    width: 25%;
-    height: 100%;
-    padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  width: 25%;
+  height: 100%;
+  padding: 0px 20px 0px 20px;
 }
 
 .column-form2 {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
-    width: 50%;
-    height: 100%;
-    padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  width: 50%;
+  height: 100%;
+  padding: 0px 20px 0px 20px;
 }
 
 .label-form {
-    font-size: 15px;
-    padding: 30px 0px 10px 0px;
-    font-family: 'Inter', sans-serif;
-    color: #6c6f85;
-    font-weight: bold;
+  font-size: 15px;
+  padding: 30px 0px 10px 0px;
+  font-family: "Inter", sans-serif;
+  color: #6c6f85;
+  font-weight: bold;
 }
 
 .input-form {
-    height: 40px;
-    font-size: 16px;
-    padding: 0px 10px 0px 10px;
-    border: none;
-    border-bottom: 1px solid rgb(203, 203, 203);
-    color: rgb(127, 127, 127);
+  height: 40px;
+  font-size: 16px;
+  padding: 0px 10px 0px 10px;
+  border: none;
+  border-bottom: 1px solid rgb(203, 203, 203);
+  color: rgb(127, 127, 127);
 }
 
 .input-form:focus {
-    border: 1px solid #e99c7a;
-    outline: #e99c7a;
+  border: 1px solid #e99c7a;
+  outline: #e99c7a;
 }
 
 .input-form::placeholder {
-    color: rgb(185, 185, 185);
+  color: rgb(185, 185, 185);
 }
 
 .textarea-form {
-    height: 200px;
-    padding: 10px;
-    width: 100%;
-    resize: none;
-    border: 1px solid rgb(203, 203, 203);
-    color: rgb(127, 127, 127);
-    font-size: 15px;
-    border-radius: 5px;
+  height: 200px;
+  padding: 10px;
+  width: 100%;
+  resize: none;
+  border: 1px solid rgb(203, 203, 203);
+  color: rgb(127, 127, 127);
+  font-size: 15px;
+  border-radius: 5px;
 }
 
 .textarea-form:focus {
-    border: 1px solid #e99c7a;
-    outline: #e99c7a;
+  border: 1px solid #e99c7a;
+  outline: #e99c7a;
 }
 
 .textarea-form::placeholder {
-    color: rgb(185, 185, 185);
+  color: rgb(185, 185, 185);
 }
 
 .button-form {
-    margin-top: 20px;
-    width: 10vw;
-    height: 48px;
-    font-family: 'Inter', sans-serif;
-    color: #6c6f85;
-    font-size: 16px;
-    border: 1px solid #dce0e8;
-    background-color: white;
-    transition: 300ms;
+  margin-top: 20px;
+  width: 10vw;
+  height: 48px;
+  font-family: "Inter", sans-serif;
+  color: #6c6f85;
+  font-size: 16px;
+  border: 1px solid #dce0e8;
+  background-color: white;
+  transition: 300ms;
 }
 
 .button-form:hover {
-    background-color: #e99c7a;
-    color: white;
+  background-color: #e99c7a;
+  color: white;
 }
 
 .button-form:active {
-    transition: 0;
-    transform: translateY(5px);
+  transition: 0;
+  transform: translateY(5px);
 }

@@ -1,27 +1,27 @@
 .addbookspage {
-    width: 100vw;
-    background-image: url("../../assets/images/background.jpg");
-    background-size: cover;
-    height: 90vh;
-    overflow-y: scroll;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  background-image: url("../../assets/images/background.jpg");
+  background-size: cover;
+  height: 90vh;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-addbook{
-    display: flex;
-    flex-direction: column;
-    width: 60vw;
-    background-color: red;
-    align-items: center;
+.form-addbook {
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  background-color: red;
+  align-items: center;
 
-    input{
-        width: 60%;
-        margin-bottom: 20px;
-    }
+  input {
+    width: 60%;
+    margin-bottom: 20px;
+  }
 
-    label {
-        width: 60%;
-    }
+  label {
+    width: 60%;
+  }
 }

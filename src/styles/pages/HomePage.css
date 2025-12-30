@@ -1,97 +1,102 @@
 @font-face {
-    font-family: Bakersville;
-    src: url("../../assets/fonts/LibreBaskerville-Bold.ttf");
+  font-family: Bakersville;
+  src: url("../../assets/fonts/LibreBaskerville-Bold.ttf");
 }
 
 .homepage {
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    background-image: url("../../assets/images/background_image.jpg");
-    background-size: cover;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  background-image: url("../../assets/images/background_image.jpg");
+  background-size: cover;
 }
 
 .homepage-majorcontainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(255, 254, 246, 0.925);
-    width: 70%;
-    padding: 50px;
-    height: 50%;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(255, 254, 246, 0.925);
+  width: 70%;
+  padding: 50px;
+  height: 50%;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 10px;
 
-    h1 {
-        font-family: Bakersville;
-        font-size: 40px;
-        color: #444444;
-        background-image: linear-gradient(#e99c7a, #e99c7a);
-        background-size: 100% 10px;
-        background-repeat: no-repeat;
-        background-position: 100% 120%;
-        transition: background-size .7s, background-position .5s ease-in-out;
-        cursor: default;
-    }
+  h1 {
+    font-family: Bakersville;
+    font-size: 40px;
+    color: #444444;
+    background-image: linear-gradient(#e99c7a, #e99c7a);
+    background-size: 100% 10px;
+    background-repeat: no-repeat;
+    background-position: 100% 120%;
+    transition:
+      background-size 0.7s,
+      background-position 0.5s ease-in-out;
+    cursor: default;
+  }
 }
 
 .homepage-majorleft {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: Squada;
-    font-size: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Squada;
+  font-size: 45px;
 
-    img {
-        width: 300px;
-    }
+  img {
+    width: 300px;
+  }
 }
 
 .homepage-majorright {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .homepage-minor {
-    display: flex;
-    flex-direction: flex;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: flex;
+  justify-content: space-between;
 }
 
 .searchinput {
-    height: 48px;
-    line-height: 48px;
-    width: 60%;
-    padding: 0 40px 0 16px;
-    font-family: 'Inter', sans-serif;
-    color: #6c6f85;
-    font-size: 16px;
-    border: 1px solid #dce0e8;
+  height: 48px;
+  line-height: 48px;
+  width: 60%;
+  padding: 0 40px 0 16px;
+  font-family: "Inter", sans-serif;
+  color: #6c6f85;
+  font-size: 16px;
+  border: 1px solid #dce0e8;
 }
 
 .searchinput:hover,
 .searchinput:focus {
-    border: 1px solid #e99c7a;
-    outline: #e99c7a;
+  border: 1px solid #e99c7a;
+  outline: #e99c7a;
 }
 
 .button_homepage {
-    height: 48px;
-    width: 20%;
-    font-family: 'Inter', sans-serif;
-    color: #6c6f85;
-    font-size: 16px;
-    border: 1px solid #dce0e8;
-    background-color: white;
-    transition: 300ms;
+  height: 48px;
+  width: 20%;
+  font-family: "Inter", sans-serif;
+  color: #6c6f85;
+  font-size: 16px;
+  border: 1px solid #dce0e8;
+  background-color: white;
+  transition: 300ms;
 }
 
 .button_homepage:hover {
-    background-color: #e99c7a;
-    color: white;
+  background-color: #e99c7a;
+  color: white;
 }

@@ -5,7 +5,7 @@ import "../styles/pages/AddBookPage.css";
 import SubmitFormOutput from "../components/SubmitFormOutput";
 
 const formInitialState = {
-  id: Math.ceil(Math.random()*1000000),
+  id: Math.ceil(Math.random() * 1000000),
   title: "",
   image: "",
   synopsis: "",
