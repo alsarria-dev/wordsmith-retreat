@@ -16,7 +16,7 @@ dist-ssr
 
 # Editor directories and files
 .sonarlint
-.vscode/
+.vscode
 .idea
 .DS_Store
 *.suo
