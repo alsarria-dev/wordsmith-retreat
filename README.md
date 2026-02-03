@@ -6,7 +6,7 @@
 
 ---
 
-## 🚀 Demo / Preview
+## 🚀 Logo
 
 <img src="./src/assets/images/logo_books.png" width="200">
 
