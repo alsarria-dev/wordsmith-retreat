@@ -60,6 +60,7 @@ Key dependencies (see `package.json`):
 ## 🛠️ Local Setup / Development
 
 Prerequisites:
+
 - Node.js (>= 16 recommended)
 - npm or yarn
 
@@ -127,6 +128,7 @@ The app uses a `books` table. A recommended schema that matches the fields used 
 - `favorite` (boolean) — default false
 
 Notes:
+
 - The client currently generates a random id when adding entries (see `AddBookPage`), but it's cleaner to let Supabase assign IDs (serial primary key) — if you change this, remove the client-side id generation.
 - Arrays can be stored as Postgres text[] (native to Supabase) or as JSON/text depending on how you plan to query them.
 
@@ -153,15 +155,14 @@ Notes:
 ## 👤 Author
 
 **Alvaro Sarria Rico**
-- GitHub: https://github.com/alvsarria
-- LinkedIn: https://www.linkedin.com/in/alsarria90/
+
+- GitHub: https://github.com/alsarria-dev
+- LinkedIn: https://www.linkedin.com/in/alsarria-dev/
 
 ---
 
 ## 🏷️ License
 
-This repository does not include an explicit license file. Add a `LICENSE` file if you want to clarify reuse terms.
+This repository does include an explicit license file. Edit `LICENSE` file if you want to clarify reuse terms.
 
 ---
-
-If you'd like, I can also add a short CONTRIBUTING.md and a sample `.env.example` file to make setup clearer. Would you like me to add those? ✅
