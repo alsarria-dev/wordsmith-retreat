@@ -1,71 +1,115 @@
-@font-face {
-  font-family: Roboto;
-  src: url("../../assets/fonts/Roboto-Medium.ttf");
-}
-
 .header {
-  width: 100vw;
-  padding: 20px 100px 20px 100px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  min-height: var(--header-height);
+  padding: var(--space-3) var(--space-5);
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-3);
   justify-content: space-between;
   align-items: center;
-  background-color: white;
-  font-family: Roboto;
-  color: rgb(117, 117, 117);
-  border-bottom: 1px solid #e6e6e6;
-  height: 10vh;
+  background-color: var(--bg-raised);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
 
-  .logo-slogan {
-    width: 15%;
-  }
+.logo-slogan {
+  width: auto;
+  max-height: 2.25rem;
+  flex: 0 0 auto;
+}
 
-  ul {
-    display: flex;
-    list-style: none;
-    height: 100%;
+.header ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: var(--space-1);
+}
+
+.header a {
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--radius-sm);
+}
+
+.header li {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition:
+    color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+}
+
+.header li:hover {
+  color: var(--text);
+  border-bottom-color: var(--border-strong);
+}
+
+/* The active route is marked with the stamp, not a filled block — the accent
+ * stays scarce enough to still read as an accent. */
+.header .active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+.theme-toggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+@media (max-width: 48rem) {
+  .header {
     justify-content: center;
-    align-items: center;
-    border: 0.5px solid rgb(117, 117, 117);
+    padding-inline: var(--space-4);
   }
 
-  li {
-    height: 100%;
-    width: 150px;
-    place-content: center;
-    text-align: center;
-    color: rgb(117, 117, 117);
-    padding: 16px 32px;
-    text-decoration: none;
+  .header ul {
+    order: 3;
+    width: 100%;
+    justify-content: center;
   }
 
-  li:hover {
-    background-color: #e99c7a;
-    color: white;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
-  }
-
-  .active {
-    background-color: #e99c7a;
-    color: white;
+  .header li {
+    padding-inline: var(--space-3);
   }
 }
 
-@keyframes popping {
-  0% {
-    transform: translateY(0px);
+/* The wordmark is dark ink on transparent, so it needs lifting off an ink
+   ground. Same treatment the footer marks get. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .header .logo-slogan {
+    filter: invert(1) brightness(1.6);
   }
+}
 
-  50% {
-    transform: translateY(-3px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+:root[data-theme="dark"] .header .logo-slogan {
+  filter: invert(1) brightness(1.6);
 }

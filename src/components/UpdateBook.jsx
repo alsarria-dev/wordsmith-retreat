@@ -1,7 +1,31 @@
+/**
+ * @file The edit modal for books the user created.
+ *
+ * Reached from the details modal, and only ever shown for a book whose
+ * `source === "supabase"` — Open Library records cannot be edited.
+ *
+ * Form state is seeded once from the book passed in and is *not* re-synced if
+ * that prop later changes, which is fine because the modal is unmounted between
+ * uses.
+ */
+
 import { useState } from "react";
 import supabase from "../utils/config";
 import "../styles/components/UpdateBook.css";
 
+/**
+ * The edit modal.
+ *
+ * @param {object} props
+ * @param {object} props.bookDetail - The book being edited. Seeds the form.
+ * @param {(book: object) => void} props.setBookDetail - Updates the parent's copy
+ *   after a successful save.
+ * @param {boolean} props.showModalDetails
+ * @param {(open: boolean) => void} props.setShowModalDetails
+ * @param {boolean} props.showModalUpdate
+ * @param {(open: boolean) => void} props.setShowModalUpdate
+ * @param {() => void} props.fetchData - Refreshes the parent list after saving.
+ */
 const UpdateBook = ({
   bookDetail,
   setBookDetail,
@@ -38,6 +62,18 @@ const UpdateBook = ({
     }
   };
 
+  /**
+   * Validates and saves the edits.
+   *
+   * TODO(doc): this validation compares `isbn13` and `date_published` against the
+   * number 0 while both hold strings, so those two guards never fire — the same
+   * bug that was fixed in AddBookPage. Whether that is intentional here (perhaps
+   * to let a user blank a field) or simply missed could not be determined from
+   * the code. Documenting rather than fixing, since this is a docs-only task.
+   *
+   * Note the modal closes and the list refreshes regardless of outcome, so a
+   * failed save looks identical to a successful one.
+   */
   const handleSubmitUpdate = async () => {
     console.log(formDataUpdate);
     const {
@@ -71,7 +107,9 @@ const UpdateBook = ({
       if (error) {
         console.log(error);
       } else {
-        setBookDetail(formDataUpdate);
+        // Spread over the original so `source` survives the edit — the details
+        // modal keys its Update/Delete buttons off it.
+        setBookDetail({ ...bookDetail, ...formDataUpdate });
       }
     }
     closeUpdate();
@@ -88,10 +126,18 @@ const UpdateBook = ({
             src={bookDetail.image}
             alt="book detail image"
           />
-          <button className="button-details" onClick={handleSubmitUpdate}>
+          <button
+            type="button"
+            className="button-details"
+            onClick={handleSubmitUpdate}
+          >
             Save
           </button>
-          <button className="button-details" onClick={closeUpdate}>
+          <button
+            type="button"
+            className="button-details"
+            onClick={closeUpdate}
+          >
             Cancel
           </button>
         </div>

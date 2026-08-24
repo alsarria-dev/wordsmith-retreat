@@ -1,102 +1,138 @@
-@font-face {
-  font-family: Bakersville;
-  src: url("../../assets/fonts/LibreBaskerville-Bold.ttf");
-}
+/* The hero opens on the most characteristic thing in this subject's world: a
+ * book's own title page. Type carries it — no photograph, no gradient. */
 
 .homepage {
-  height: 90vh;
+  min-height: calc(100vh - var(--header-height));
+  background-color: var(--bg);
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100vw;
-  background-image: url("../../assets/images/background_image.jpg");
-  background-size: cover;
+  justify-content: center;
+  padding: var(--space-8) var(--space-5);
 }
 
 .homepage-majorcontainer {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--space-8);
   align-items: center;
-  background-color: rgb(255, 254, 246, 0.925);
-  width: 70%;
-  padding: 50px;
-  height: 50%;
-  box-shadow:
-    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  border-radius: 10px;
-
-  h1 {
-    font-family: Bakersville;
-    font-size: 40px;
-    color: #444444;
-    background-image: linear-gradient(#e99c7a, #e99c7a);
-    background-size: 100% 10px;
-    background-repeat: no-repeat;
-    background-position: 100% 120%;
-    transition:
-      background-size 0.7s,
-      background-position 0.5s ease-in-out;
-    cursor: default;
-  }
+  width: 100%;
+  max-width: var(--page-max);
 }
 
 .homepage-majorleft {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  font-family: Squada;
-  font-size: 45px;
+}
 
-  img {
-    width: 300px;
-  }
+.logo-books {
+  width: 100%;
+  max-width: 20rem;
+  height: auto;
+  filter: drop-shadow(var(--shadow-book));
 }
 
 .homepage-majorright {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  gap: var(--space-4);
+  /* A rule down the binding edge — the gutter of an open book. */
+  border-left: 1px solid var(--border);
+  padding-left: var(--space-6);
+}
+
+.slogan-homepage {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 5vw, var(--text-4xl));
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+  max-width: 14ch;
+}
+
+.slogan-homepage em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.homepage-lede {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+
+.homepage .searchinput {
+  width: 100%;
+  max-width: 30rem;
+  height: 3.25rem;
+  padding: 0 var(--space-4);
+  margin-top: var(--space-2);
+  background-color: var(--bg-raised);
+  color: var(--text);
+  font-size: var(--text-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
+}
+
+.homepage .searchinput::placeholder {
+  color: var(--text-faint);
+}
+
+.homepage .searchinput:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgb(179 58 43 / 18%);
 }
 
 .homepage-minor {
   display: flex;
-  flex-direction: flex;
-  justify-content: space-between;
-}
-
-.searchinput {
-  height: 48px;
-  line-height: 48px;
-  width: 60%;
-  padding: 0 40px 0 16px;
-  font-family: "Inter", sans-serif;
-  color: #6c6f85;
-  font-size: 16px;
-  border: 1px solid #dce0e8;
-}
-
-.searchinput:hover,
-.searchinput:focus {
-  border: 1px solid #e99c7a;
-  outline: #e99c7a;
 }
 
 .button_homepage {
-  height: 48px;
-  width: 20%;
-  font-family: "Inter", sans-serif;
-  color: #6c6f85;
-  font-size: 16px;
-  border: 1px solid #dce0e8;
-  background-color: white;
-  transition: 300ms;
+  padding: var(--space-3) var(--space-6);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent-contrast);
+  background-color: var(--accent);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--ease),
+    transform var(--duration-fast) var(--ease);
 }
 
 .button_homepage:hover {
-  background-color: #e99c7a;
-  color: white;
+  background-color: var(--accent-hover);
+}
+
+.button_homepage:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 48rem) {
+  .homepage {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .homepage-majorcontainer {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .homepage-majorleft {
+    order: 2;
+  }
+
+  .logo-books {
+    max-width: 12rem;
+  }
+
+  .homepage-majorright {
+    border-left: 0;
+    padding-left: 0;
+  }
 }

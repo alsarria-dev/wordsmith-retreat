@@ -1,164 +1,311 @@
+/* The shelf is the signature. Books sit face-out on real timber, and taking one
+ * down — hover or keyboard focus — lifts it forward off the shelf. That is the
+ * one bold move; everything around it stays quiet. */
+
+/* The top gap belongs to the page, not to the search bar. Favorites reuses this
+ * sheet without a search bar, and when the bar owned the spacing that shelf sat
+ * flush against the header — clipping the bookmark and the top of every cover. */
 .allbookspage {
-  width: 100vw;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-  height: 90vh;
-  overflow-y: scroll;
+  width: 100%;
+  min-height: calc(100vh - var(--header-height));
+  background-color: var(--bg);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-8);
 }
 
-.nonebookspage {
-  width: 100vw;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-  height: 90vh;
+/* ---- Search ------------------------------------------------------------- */
+
+.searchbar-container {
+  display: flex;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--space-3) var(--space-5) var(--space-5);
+  align-items: center;
 }
+
+.searchfield {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+}
+
+.searchinput-allpages {
+  width: 100%;
+  height: 3rem;
+  padding: 0 2.75rem 0 var(--space-4);
+  background-color: var(--bg-raised);
+  color: var(--text);
+  font-size: var(--text-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
+}
+
+.searchinput-allpages::placeholder {
+  color: var(--text-faint);
+}
+
+.searchinput-allpages:hover {
+  border-color: var(--border-strong);
+}
+
+.searchinput-allpages:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgb(179 58 43 / 18%);
+}
+
+.searchclear {
+  position: absolute;
+  right: var(--space-2);
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-faint);
+  font-size: var(--text-lg);
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.searchclear:hover {
+  color: var(--accent);
+}
+
+.button-allpages {
+  height: 3rem;
+  padding-inline: var(--space-5);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent-contrast);
+  background-color: var(--accent);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--ease),
+    transform var(--duration-fast) var(--ease);
+}
+
+.button-allpages:hover {
+  background-color: var(--accent-hover);
+}
+
+.button-allpages:active {
+  transform: translateY(1px);
+}
+
+.homepage-minorr {
+  display: contents;
+}
+
+/* ---- Shelf -------------------------------------------------------------- */
 
 .bookshelf-allbooks {
-  padding: 50px 100px 50px 100px;
-  /* height: 90vh; */
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: var(--space-6) var(--space-4);
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
   position: relative;
 }
 
-.bookpic {
-  width: 150px;
-  transition: 300ms;
-  cursor: pointer;
-  z-index: 1;
-}
-
 .bookcard {
-  width: 230px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
+  align-items: stretch;
+}
+
+.book-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-inline: var(--space-2);
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  transition:
+    transform var(--duration) var(--ease),
+    filter var(--duration) var(--ease);
+  filter: drop-shadow(var(--shadow-book));
+}
+
+/* Taking a book down off the shelf. */
+.book:hover,
+.book:focus-within {
+  transform: translateY(-10px) scale(1.03);
+  filter: drop-shadow(var(--shadow-book-raised));
+}
+
+/* The cover's footprint is reserved before the image arrives. Without this the
+ * card collapsed to nothing while loading, which detached the bookmark and left
+ * the shelves in a row at different heights. */
+.bookpic {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 1px 3px 3px 1px;
+  background-color: var(--bg-sunken);
+  overflow: hidden;
+  /* The bound edge: a darker strip down the spine side. */
+  box-shadow: inset 3px 0 0 rgb(0 0 0 / 22%);
+}
+
+.bookpic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .bookmark {
   position: absolute;
-  width: 30px;
-  top: 0px;
-  left: 0px;
+  top: -2px;
+  left: var(--space-2);
   z-index: 2;
+  width: 1.5rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
   cursor: pointer;
+  transition: transform var(--duration) var(--ease);
 }
 
-.book {
-  width: 150px;
-  display: flex;
-  align-items: end;
-  position: relative;
-  transition: 300ms;
-  filter: drop-shadow(10px 0px 10px #000000);
+.bookmark:hover {
+  transform: translateY(2px);
 }
 
-.book:hover {
-  transform: translateY(5px) scale(1.05);
-  filter: drop-shadow(10.5px 0px 10px #000000);
+/* Foil stamping — the one place gold appears. */
+.bookmark::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--cloth-400);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%);
+  transition: background-color var(--duration) var(--ease);
+}
+
+.bookmark[aria-pressed="true"]::before {
+  background-color: var(--favorite);
+  box-shadow: 0 2px 6px rgb(176 138 70 / 55%);
 }
 
 .shelf {
   width: 100%;
-  height: 20px;
-  background-image: url("../../assets/images/wood_background.jpg");
-  background-size: cover;
+  height: 0.75rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: var(--shelf-surface);
+  box-shadow: 0 6px 10px -6px rgb(0 0 0 / 55%);
 }
 
-.book-container {
-  height: 250px;
-  display: flex;
-  align-items: end;
-}
+/* ---- States ------------------------------------------------------------- */
 
-.searchbar-container {
+.nobooks,
+.nobooks1 {
+  grid-column: 1 / -1;
   display: flex;
-  width: 100%;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-2);
   align-items: center;
-  padding-top: 50px;
-}
-
-.searchinput-allpages {
-  height: 48px;
-  line-height: 48px;
-  width: 40%;
-  padding: 0 40px 0 16px;
-  font-family: "Inter", sans-serif;
-  color: #6c6f85;
-  font-size: 16px;
-  border: 1px solid #dce0e8;
-}
-
-.searchinput-allpages:hover,
-.searchinput-allpages:focus {
-  border: 1px solid #e99c7a;
-  outline: #e99c7a;
-}
-
-.button-allpages {
-  width: 5vw;
-  height: 48px;
-  font-family: "Inter", sans-serif;
-  color: #6c6f85;
-  font-size: 16px;
-  border: 1px solid #dce0e8;
-  background-color: white;
-  transition: 300ms;
-}
-
-.button-allpages:hover {
-  background-color: #e99c7a;
-  color: white;
-}
-
-.button-allpages:active {
-  transition: 0;
-  transform: translateY(5px);
-}
-
-.homepage-minorr {
-  padding-left: 20px;
+  justify-content: center;
+  min-height: 40vh;
+  padding: var(--space-7) var(--space-5);
+  text-align: center;
+  color: var(--text-muted);
 }
 
 .nobooks {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #6c6f85;
-  font-family: "Inter", sans-serif;
-  font-size: 50px;
-  padding-bottom: 150px;
-  animation: 1s linear infinite popping;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--text);
 }
 
-.nobooks1 {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #6c6f85;
-  font-family: "Inter", sans-serif;
-  font-size: 50px;
-  padding-bottom: 150px;
+.nobooks-hint {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  max-width: 32ch;
 }
 
-@keyframes popping {
-  0% {
-    transform: scale(1);
+.shelf-notice {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--accent);
+  background-color: var(--bg-raised);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+/* ---- Skeletons ---------------------------------------------------------- */
+
+/* Sized to the real card so nothing shifts when the covers arrive. */
+.skeleton-cover {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 1px 3px 3px 1px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-sunken) 0%,
+    var(--bg-raised) 50%,
+    var(--bg-sunken) 100%
+  );
+  background-size: 200% 100%;
+  animation: shelf-shimmer 1.4s linear infinite;
+}
+
+@keyframes shelf-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 40rem) {
+  .searchbar-container {
+    flex-wrap: wrap;
+    padding-top: var(--space-2);
   }
 
-  50% {
-    transform: scale(1.05);
+  .searchfield {
+    flex: 1 1 100%;
   }
 
-  100% {
-    transform: scale(1);
+  .homepage-minorr {
+    display: block;
+    width: 100%;
+  }
+
+  .button-allpages {
+    width: 100%;
+  }
+
+  .bookshelf-allbooks {
+    grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+    gap: var(--space-5) var(--space-3);
+    padding-inline: var(--space-4);
   }
 }

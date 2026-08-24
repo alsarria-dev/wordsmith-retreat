@@ -15,11 +15,11 @@
   animation: cover 7s ease-in-out infinite;
 }
 .book-load {
-  background-color: #e99c7a;
+  background-color: var(--border-strong);
   border-radius: 0.25em;
   box-shadow:
     0 0.25em 0.5em hsla(0, 0%, 0%, 0.3),
-    0 0 0 0.25em #e99c7a inset;
+    0 0 0 0.25em var(--border-strong) inset;
   padding: 0.25em;
   perspective: 37.5em;
   position: relative;
@@ -99,14 +99,14 @@
   95%,
   to {
     animation-timing-function: ease-out;
-    background-color: #fec1a7;
+    background-color: var(--bg-sunken);
   }
   10%,
   40%,
   60%,
   90% {
     animation-timing-function: ease-in;
-    background-color: #fec1a7;
+    background-color: var(--bg-sunken);
   }
 }
 @keyframes shadow {

@@ -1,0 +1,183 @@
+/* Wordsmith Retreat — design tokens
+ *
+ * The identity comes from bookbinding rather than the cozy-library cliché:
+ * buckram cloth for ground, printer's ink for text, a library date-stamp red as
+ * the single loud accent, and gold foil reserved for one thing only — a book
+ * you have kept. Every color and size in the app resolves to a token here.
+ */
+
+:root {
+  /* ---- Primitives ------------------------------------------------------ */
+
+  /* Book cloth. Linen-green-grey, deliberately not paper cream. */
+  --cloth-50: #f6f7f2;
+  --cloth-100: #eff0ea;
+  --cloth-200: #e3e5dc;
+  --cloth-300: #cdd1c4;
+  --cloth-400: #a9af9e;
+
+  /* Printer's ink — blue-cast, never pure black. */
+  --ink-900: #16181a;
+  --ink-800: #1f2225;
+  --ink-700: #33383c;
+  --ink-600: #4d5459;
+  --ink-500: #6a7176;
+  --ink-400: #8d9499;
+  --ink-300: #b3b9bd;
+
+  /* The one loud accent: a library date-stamp. */
+  --stamp-600: #932e22;
+  --stamp-500: #b33a2b;
+  --stamp-400: #cc5744;
+
+  /* Foil stamping. Earned by favorites, used nowhere else. */
+  --foil-600: #8f6d31;
+  --foil-500: #b08a46;
+  --foil-400: #d0ab68;
+
+  /* Shelf timber — structure, not decoration. */
+  --shelf-dark: #33291f;
+  --shelf-mid: #4a3b2f;
+
+  /* ---- Semantic (light) ------------------------------------------------ */
+
+  --bg: var(--cloth-100);
+  --bg-raised: var(--cloth-50);
+  --bg-sunken: var(--cloth-200);
+  --bg-inverse: var(--ink-900);
+
+  --text: var(--ink-900);
+  --text-muted: var(--ink-500);
+  --text-faint: var(--ink-400);
+  --text-inverse: var(--cloth-50);
+
+  --border: var(--cloth-300);
+  --border-strong: var(--cloth-400);
+
+  --accent: var(--stamp-500);
+  --accent-hover: var(--stamp-600);
+  --accent-contrast: #ffffff;
+
+  --favorite: var(--foil-500);
+  --shelf-surface: linear-gradient(
+    180deg,
+    var(--shelf-mid) 0%,
+    var(--shelf-dark) 100%
+  );
+
+  --focus-ring: var(--stamp-500);
+  --shadow-book: 0 10px 18px -8px rgb(22 24 26 / 45%);
+  --shadow-book-raised: 0 22px 34px -12px rgb(22 24 26 / 55%);
+  --shadow-panel: 0 24px 60px -20px rgb(22 24 26 / 45%);
+  --scrim: rgb(22 24 26 / 62%);
+
+  /* ---- Typography ------------------------------------------------------ */
+
+  /* Three roles, and the rule between them is the point: prose is set in the
+   * book face, interface controls in the grotesque, and bibliographic data in
+   * mono — the way a catalog card sets it. */
+  --font-display: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  --font-ui:
+    "Archivo", system-ui, -apple-system, "Segoe UI", Helvetica, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.875rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 3.5rem;
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+
+  --tracking-label: 0.14em;
+  --tracking-tight: -0.01em;
+
+  /* ---- Space, radius, motion ------------------------------------------- */
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration: 220ms;
+  --duration-slow: 420ms;
+
+  --page-max: 1180px;
+  --header-height: 4.5rem;
+}
+
+/* ---- Semantic (dark) ---------------------------------------------------- */
+
+/* Only the semantic layer is redefined; primitives never move. Guarded so an
+ * explicit light choice still wins over the system preference. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--ink-900);
+    --bg-raised: var(--ink-800);
+    --bg-sunken: #101214;
+    --bg-inverse: var(--cloth-100);
+
+    --text: var(--cloth-100);
+    --text-muted: var(--ink-300);
+    --text-faint: var(--ink-400);
+    --text-inverse: var(--ink-900);
+
+    --border: #2c3135;
+    --border-strong: var(--ink-600);
+
+    --accent: var(--stamp-400);
+    --accent-hover: #dd6b57;
+
+    --favorite: var(--foil-400);
+
+    --focus-ring: var(--stamp-400);
+    --shadow-book: 0 10px 18px -8px rgb(0 0 0 / 70%);
+    --shadow-book-raised: 0 22px 34px -12px rgb(0 0 0 / 80%);
+    --shadow-panel: 0 24px 60px -20px rgb(0 0 0 / 75%);
+    --scrim: rgb(8 9 10 / 74%);
+  }
+}
+
+/* The toggle wins in both directions. */
+:root[data-theme="dark"] {
+  --bg: var(--ink-900);
+  --bg-raised: var(--ink-800);
+  --bg-sunken: #101214;
+  --bg-inverse: var(--cloth-100);
+
+  --text: var(--cloth-100);
+  --text-muted: var(--ink-300);
+  --text-faint: var(--ink-400);
+  --text-inverse: var(--ink-900);
+
+  --border: #2c3135;
+  --border-strong: var(--ink-600);
+
+  --accent: var(--stamp-400);
+  --accent-hover: #dd6b57;
+
+  --favorite: var(--foil-400);
+
+  --focus-ring: var(--stamp-400);
+  --shadow-book: 0 10px 18px -8px rgb(0 0 0 / 70%);
+  --shadow-book-raised: 0 22px 34px -12px rgb(0 0 0 / 80%);
+  --shadow-panel: 0 24px 60px -20px rgb(0 0 0 / 75%);
+  --scrim: rgb(8 9 10 / 74%);
+}

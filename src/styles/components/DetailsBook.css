@@ -1,95 +1,153 @@
+/* The details panel reads as a catalog card: prose in the book face, every
+ * bibliographic value in mono under a small caps label. */
+
 .details-container {
   position: fixed;
-  top: 0;
-  width: 0;
-  height: 100%;
-  width: 100%;
-  backdrop-filter: blur(5px);
-  font-family: "Inter", sans-serif;
-  color: #6c6f85;
-  font-size: 16px;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: var(--space-5);
+  background-color: var(--scrim);
+  backdrop-filter: blur(2px);
+  animation: details-fade var(--duration) var(--ease);
+}
 
-  span {
-    font-weight: bold;
-    color: rgb(68, 64, 64);
+@keyframes details-fade {
+  from {
+    opacity: 0;
   }
 }
 
-.synop {
-  padding-bottom: 10px;
-}
-
-.synop1 {
-  padding-bottom: 20px;
-}
-
 .details-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50vw;
-  height: 50vh;
-  background-color: white;
-  display: flex;
-  backdrop-filter: blur(5px);
-  justify-content: center;
-  align-items: center;
-  border: 5px solid #e99c7a;
-  border-radius: 20px;
-  padding: 25px 0px 25px 0px;
-  filter: drop-shadow(5px 0px 5px #878787);
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: var(--space-6);
+  width: 100%;
+  max-width: 52rem;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: var(--space-6);
+  background-color: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
 }
 
 .details-info-container1 {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  padding-left: 25px;
-  padding-right: 25px;
-  height: 100%;
+  gap: var(--space-2);
+}
+
+.img-details {
+  width: 100%;
+  border-radius: 1px 3px 3px 1px;
+  box-shadow:
+    inset 3px 0 0 rgb(0 0 0 / 22%),
+    var(--shadow-book);
+  margin-bottom: var(--space-2);
+}
+
+.button-details {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text);
+  background-color: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    color var(--duration) var(--ease),
+    background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+}
+
+.button-details:hover {
+  color: var(--accent-contrast);
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .details-info-container2 {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  padding-left: 25px;
-  padding-right: 25px;
-  height: 100%;
-  overflow-y: scroll;
+  gap: var(--space-3);
+  min-width: 0;
+}
 
-  h1 {
-    padding-bottom: 20px;
+.details-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
+  color: var(--text);
+}
+
+.details-author {
+  font-size: var(--text-md);
+  color: var(--text-muted);
+  font-style: italic;
+  font-family: var(--font-display);
+}
+
+/* The bibliographic block — the catalog-card part. */
+.details-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: var(--space-3) var(--space-4);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.details-fact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.details-fact-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.synop1 {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+}
+
+.synop1-loading {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+@media (max-width: 48rem) {
+  .details-container {
+    padding: var(--space-3);
   }
-}
 
-.img-details {
-  height: 300px;
-  width: fit-content;
-  filter: drop-shadow(5px 0px 5px #000000);
-  padding-bottom: 10px;
-}
+  .details-modal {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-4);
+    max-height: 90vh;
+  }
 
-.button-details {
-  margin-top: 10px;
-  width: 80%;
-  height: 28px;
-  font-family: "Inter", sans-serif;
-  color: #6c6f85;
-  font-size: 14px;
-  border: 1px solid #dce0e8;
-  background-color: white;
-  transition: 300ms;
-}
+  .details-info-container1 {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
 
-.button-details:hover {
-  background-color: #e99c7a;
-  color: white;
-}
-
-.button-details:active {
-  transition: 0;
-  transform: translateY(2.5px);
+  .img-details {
+    width: 8rem;
+    margin-bottom: 0;
+  }
 }

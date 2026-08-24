@@ -1,6 +1,29 @@
+/**
+ * @file The confirmation modal shown after a book is successfully created.
+ *
+ * Echoes back what was just saved, then hands the user to the shelf.
+ *
+ * Its "Finish" button does two things that matter: it navigates to /books *and*
+ * sets the shared search term to the new book's title. That is what makes the
+ * newly added book visible on arrival — and it is the reason the books page has
+ * to search Supabase as well as Open Library.
+ *
+ * Borrows DetailsBook's stylesheet rather than defining its own, since it uses
+ * the same modal chrome.
+ */
+
 import { useNavigate } from "react-router-dom";
 import "../styles/components/DetailsBook.css";
 
+/**
+ * Post-creation confirmation modal.
+ *
+ * @param {object} props
+ * @param {object} props.data - The form data just inserted. Note this is the raw
+ *   form object, not a normalized book, so it has no `source` field.
+ * @param {(value: string) => void} props.setSearchString - Used to pre-fill the
+ *   shelf's search with the new title.
+ */
 const SubmitFormOutput = ({ data, setSearchString }) => {
   const navigate = useNavigate();
   const handleClose = () => {
@@ -17,7 +40,11 @@ const SubmitFormOutput = ({ data, setSearchString }) => {
             src={data.image}
             alt="book detail image"
           />
-          <button className="button-details" onClick={handleClose}>
+          <button
+            type="button"
+            className="button-details"
+            onClick={handleClose}
+          >
             Finish
           </button>
         </div>
